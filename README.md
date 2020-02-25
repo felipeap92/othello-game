@@ -8,7 +8,7 @@ Othello (Reversi) game implementation with the flexibility to create your own AI
 
 | Project | Build | Coverage |
 | ------------- | :-------------: | :-------------: |
-| othello-core | [![Build Status](https://dev.azure.com/felipeap92/Othello%20Game/_apis/build/status/othello-core?branchName=master)](https://dev.azure.com/felipeap92/Othello%20Game/_build/latest?definitionId=2&branchName=master) | ![Azure DevOps coverage](https://img.shields.io/azure-devops/coverage/felipeap92/Othello%20Game/2)
+| othello-core | [![Build Status](https://dev.azure.com/felipeap92/Othello%20Game/_apis/build/status/othello-core?branchName=master)](https://dev.azure.com/felipeap92/Othello%20Game/_build/latest?definitionId=3&branchName=master) | ![Azure DevOps coverage](https://img.shields.io/azure-devops/coverage/felipeap92/Othello%20Game/3)
 | othello-game | - | - |
 | othello-server | - | - |
 
