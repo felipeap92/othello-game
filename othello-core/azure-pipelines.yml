@@ -1,0 +1,48 @@
+# Node.js
+# Build a general Node.js project with npm.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+  branches:
+    include:
+      - master
+  paths:
+    include:
+      - othello-core/*
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '10.x'
+    displayName: 'Install Node.js'
+
+  - script: |
+      cd ./othello-core
+      yarn
+    displayName: 'Installing dependencies'
+
+  - script: |
+      cd ./othello-core
+      yarn test
+    displayName: 'Running lint and tests'
+
+  - script: |
+      cd ./othello-core
+      yarn build
+    displayName: 'Building'
+
+  - task: PublishTestResults@2
+    condition: succeededOrFailed()
+    inputs:
+      testRunner: JUnit
+      testResultsFiles: '$(System.DefaultWorkingDirectory)/othello-core/**/junit.xml'
+
+  - task: PublishCodeCoverageResults@1
+    inputs:
+      codeCoverageTool: Cobertura
+      summaryFileLocation: '$(System.DefaultWorkingDirectory)/othello-core/**/*coverage.xml'
+      reportDirectory: '$(System.DefaultWorkingDirectory)/othello-core/**/coverage'
