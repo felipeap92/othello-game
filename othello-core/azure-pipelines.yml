@@ -38,11 +38,14 @@ steps:
   - task: PublishTestResults@2
     condition: succeededOrFailed()
     inputs:
-      testRunner: JUnit
+      testResultsFormat: 'JUnit'
       testResultsFiles: '$(System.DefaultWorkingDirectory)/othello-core/**/junit.xml'
+      failTaskOnFailedTests: true
 
   - task: PublishCodeCoverageResults@1
+    condition: succeededOrFailed()
     inputs:
-      codeCoverageTool: Cobertura
+      codeCoverageTool: 'Cobertura'
       summaryFileLocation: '$(System.DefaultWorkingDirectory)/othello-core/**/*coverage.xml'
       reportDirectory: '$(System.DefaultWorkingDirectory)/othello-core/**/coverage'
+      failIfCoverageEmpty: true

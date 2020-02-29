@@ -16,7 +16,7 @@
     "watch": "run-s build && run-p \"build -- -w\" \"test:unit:hml-coverage -- --watch\"",
     "build": "run-s clean:build && tsc",
     "test": "run-s clean:coverage test:*",
-    "test:lint": "tslint --project tsconfig.json -c tslint.json --format junit -o coverage/junit-lint-results.xml",
+    "test:lint": "tslint --project tsconfig.json -c tslint.json",
     "test:unit": "jest --ci",
     "test:unit:hml-coverage": "jest --coverageReporters=lcov",
     "docs": "run-s clean:docs docs:html",
