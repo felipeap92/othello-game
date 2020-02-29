@@ -103,6 +103,7 @@ typings/
 
 [Dd]ist
 [Bb]uild
+[Dd]ocs
+[Rr]eport
 coverage
 junit.xml
-[Rr]eport

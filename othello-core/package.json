@@ -13,29 +13,34 @@
   "scripts": {
     "start": "nodemon",
     "start:prod": "NODE_ENV=production node dist/index.js",
-    "watch": "run-s clean build && run-p \"build -- -w\" \"test -- --watch\"",
+    "watch": "run-s build && run-p \"build -- -w\" \"test:unit:hml-coverage -- --watch\"",
     "build": "run-s clean:build && tsc",
     "test": "run-s clean:coverage test:*",
     "test:lint": "tslint --project tsconfig.json -c tslint.json --format junit -o coverage/junit-lint-results.xml",
     "test:unit": "jest --ci",
-    "test:unit:coverage": "jest --coverageReporters=lcov",
-    "doc:html": "typedoc src/ --exclude **/*.spec.ts --target ES6 --mode file --out build/docs",
+    "test:unit:hml-coverage": "jest --coverageReporters=lcov",
+    "docs": "run-s clean:docs docs:html",
+    "docs:html": "typedoc src/ --exclude **/*.spec.ts --target ES6 --mode file --out docs",
     "clean": "run-p clean:*",
     "clean:build": "trash build",
-    "clean:coverage": "trash coverage"
+    "clean:coverage": "trash coverage",
+    "clean:docs": "trash docs"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.13",
+    "@types/jest": "^25.1.3",
+    "@types/node": "^13.7.7",
     "coveralls": "^3.0.3",
-    "jest": "^24.8.0",
-    "jest-junit": "^6.4.0",
-    "nodemon": "^1.19.1",
+    "jest": "^25.1.0",
+    "jest-junit": "^10.0.0",
+    "nodemon": "^2.0.2",
     "npm-run-all": "^4.1.5",
     "trash-cli": "^3.0.0",
-    "ts-jest": "^24.0.2",
-    "ts-node": "^8.2.0",
-    "tslint": "^5.17.0",
+    "ts-jest": "^25.2.1",
+    "ts-node": "^8.6.2",
+    "tsconfig-paths": "^3.9.0",
+    "tslint": "^6.0.0",
     "typedoc": "^0.16.10",
     "typescript": "^3.5.1"
-  }
+  },
+  "dependencies": {}
 }
