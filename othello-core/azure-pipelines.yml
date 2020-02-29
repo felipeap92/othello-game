@@ -23,17 +23,17 @@ steps:
   - script: |
       cd ./othello-core
       yarn
-    displayName: 'Installing dependencies'
+    displayName: 'Install dependencies'
 
   - script: |
       cd ./othello-core
       yarn test
-    displayName: 'Running lint and tests'
+    displayName: 'Run lint and tests'
 
   - script: |
       cd ./othello-core
       yarn build
-    displayName: 'Building'
+    displayName: 'Build'
 
   - task: PublishTestResults@2
     condition: succeededOrFailed()
