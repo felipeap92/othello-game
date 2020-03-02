@@ -1,0 +1,8 @@
+{
+  "inputFiles": ["./src"],
+  "mode": "file",
+  "out": "docs",
+  "exclude": ["./node_modules/", "./src/__tests__/"],
+  "includeVersion": true,
+  "target": "ES6"
+}

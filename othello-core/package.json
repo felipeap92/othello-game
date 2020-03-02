@@ -20,7 +20,7 @@
     "test:unit": "jest --ci",
     "test:unit:hml-coverage": "jest --coverageReporters=lcov",
     "docs": "run-s clean:docs docs:html",
-    "docs:html": "typedoc src/ --exclude **/*.spec.ts --target ES6 --mode file --out docs",
+    "docs:html": "typedoc",
     "clean": "run-p clean:*",
     "clean:build": "trash build",
     "clean:coverage": "trash coverage",
