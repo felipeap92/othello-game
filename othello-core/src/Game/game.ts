@@ -1,7 +1,7 @@
 import BoardPos from '../Board/board-pos';
 
 /**
- * Contains the default logic and implementation of the game.
+ * Contains the default game abastraction logic and implementation.
  */
 export default abstract class Game {
   /**
@@ -15,12 +15,6 @@ export default abstract class Game {
   protected board: number[][] = [];
 
   /**
-   * Gets every possible movement from the current player.
-   * @returns Returns the game board (matrix of nubmers).
-   */
-  abstract getPossibleMovements(): BoardPos[];
-
-  /**
    * Initialize a new game with a pre-determined board size.
    * @param boardSize The board size.
    */
@@ -31,6 +25,17 @@ export default abstract class Game {
     this.boardSize = boardSize;
     this.initBoard(boardSize);
   }
+
+  /**
+   * Gets every possible movement from the current player.
+   * @returns Returns the game board (matrix of nubmers).
+   */
+  abstract getPossibleMovements(): BoardPos[];
+
+  /**
+   * Executes a play movement.
+   */
+  abstract play(boardPos: BoardPos): void;
 
   /**
    * Returns the game board.

@@ -26,4 +26,11 @@ export default class TicTacToeGame extends Game {
 
     return possibleMovements;
   }
+
+  /** @inheritdoc */
+  play(boardPos: BoardPos): void {
+    if (this.board[boardPos.row][boardPos.column] !== 0) return;
+
+    this.board[boardPos.row][boardPos.column] = 1;
+  }
 }

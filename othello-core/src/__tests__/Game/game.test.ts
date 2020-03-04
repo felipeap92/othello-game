@@ -1,16 +1,9 @@
-import Game from './game';
-
-class GameMock extends Game {
-  getPossibleMovements(): import('../Board/board-pos').default[] {
-    throw new Error('Method not implemented.');
-  }
-}
+import GameMock from '../Mocks/game-mock';
 
 test('When create new game with board size > 0, create new game', () => {
   for (let size = 1; size <= 10; size++) {
     const newGame = new GameMock(size);
     const board = newGame.getBoard();
-
     expect(board.length).toBe(size);
   }
 });
