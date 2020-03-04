@@ -27,10 +27,34 @@ export default class TicTacToeGame extends Game {
     return possibleMovements;
   }
 
+  private row: number[][] = [
+    [0, 0, 0],
+    [0, 0, 0]
+  ];
+  private column: number[][] = [
+    [0, 0, 0],
+    [0, 0, 0]
+  ];
+  private diag: number[] = [0, 0];
+  private antiDiag: number[] = [0, 0];
   /** @inheritdoc */
-  play(boardPos: BoardPos): void {
-    if (this.board[boardPos.row][boardPos.column] !== 0) return;
+  protected checkIfGameIsOver(play: BoardPos, currentPlayer: number): boolean {
+    this.row[currentPlayer - 1][play.row]++;
+    this.column[currentPlayer - 1][play.column]++;
 
-    this.board[boardPos.row][boardPos.column] = 1;
+    if (play.row === play.column) this.diag[currentPlayer - 1]++;
+
+    if (play.row + play.column === this.boardSize)
+      this.antiDiag[currentPlayer - 1]++;
+
+    if (
+      this.row[currentPlayer - 1][play.row] === this.boardSize ||
+      this.column[currentPlayer - 1][play.column] === this.boardSize ||
+      this.diag[currentPlayer - 1] === this.boardSize ||
+      this.antiDiag[currentPlayer - 1] === this.boardSize
+    )
+      return true;
+
+    return false;
   }
 }

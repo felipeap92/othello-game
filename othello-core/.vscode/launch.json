@@ -16,7 +16,7 @@
       "name": "Node Inspector",
       "type": "node",
       "request": "launch",
-      "args": ["${workspaceFolder}/src/index.ts"],
+      "args": ["${workspaceFolder}/src/Simulator/index.ts"],
       "runtimeArgs": ["-r", "ts-node/register"],
       "cwd": "${workspaceRoot}",
       "protocol": "inspector",

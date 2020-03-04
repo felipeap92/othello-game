@@ -5,16 +5,14 @@ import RandomPlayer from './Player/random-player';
 const ticTacToeGame = new TicTacToeGame();
 const randomPlayer = new RandomPlayer();
 
-let movements = ticTacToeGame.getPossibleMovements();
-while (movements.length !== 0) {
+while (!ticTacToeGame.getGameIsOver()) {
   const playMovement = randomPlayer.getPlayMovement(ticTacToeGame);
 
   ticTacToeGame.play(playMovement);
-
   printBoard(ticTacToeGame.getBoard());
-
-  movements = ticTacToeGame.getPossibleMovements();
 }
+console.log(`GAME IS OVER = ${ticTacToeGame.getGameIsOver()}`);
+console.log(`WINNER = PLAYER #0${ticTacToeGame.getWinner()}`);
 
 function printBoard(board: number[][]): void {
   console.log('-----');

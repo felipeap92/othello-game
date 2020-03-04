@@ -3,10 +3,10 @@ import Game from '../../Game/game';
 
 export default class GameMock extends Game {
   getPossibleMovements(): BoardPos[] {
-    throw new Error('Method not implemented.');
+    return [];
   }
 
-  play(boardPos: BoardPos): void {
-    throw new Error('Method not implemented.' + boardPos);
+  protected checkIfGameIsOver(_play: BoardPos, _currentPlayer: number): boolean {
+    return false;
   }
 }
