@@ -13,7 +13,7 @@ export default class TicTacToeGame extends Game {
   }
 
   /** @inheritdoc */
-  getPossibleMovements(): BoardPos[] {
+  protected getPossibleMovements(): BoardPos[] {
     const possibleMovements: BoardPos[] = [];
 
     for (let row = 0; row < this.boardSize; row++) {
@@ -38,14 +38,13 @@ export default class TicTacToeGame extends Game {
   private diag: number[] = [0, 0];
   private antiDiag: number[] = [0, 0];
   /** @inheritdoc */
-  protected checkIfGameIsOver(play: BoardPos, currentPlayer: number): boolean {
+  protected checkIfGameIsOver(play: BoardPos, currentPlayer: number): number {
     this.row[currentPlayer - 1][play.row]++;
     this.column[currentPlayer - 1][play.column]++;
 
     if (play.row === play.column) this.diag[currentPlayer - 1]++;
 
-    if (play.row + play.column === this.boardSize)
-      this.antiDiag[currentPlayer - 1]++;
+    if (play.row + play.column === this.boardSize - 1) this.antiDiag[currentPlayer - 1]++;
 
     if (
       this.row[currentPlayer - 1][play.row] === this.boardSize ||
@@ -53,8 +52,10 @@ export default class TicTacToeGame extends Game {
       this.diag[currentPlayer - 1] === this.boardSize ||
       this.antiDiag[currentPlayer - 1] === this.boardSize
     )
-      return true;
+      return currentPlayer;
 
-    return false;
+    if (this.boardIsFull()) return 0;
+
+    return -1;
   }
 }

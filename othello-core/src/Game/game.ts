@@ -1,4 +1,5 @@
 import BoardPos from '../Board/board-pos';
+import PlayData from './play-data';
 
 /**
  * Contains the default game abastraction logic and implementation.
@@ -7,10 +8,10 @@ export default abstract class Game {
   /**
    * Game board size.
    */
-  protected boardSize: number = 0;
+  readonly boardSize: number = 0;
 
   /**
-   * Contains the whole board data.
+   * Contains the board data.
    */
   protected board: number[][] = [];
 
@@ -32,7 +33,12 @@ export default abstract class Game {
   /**
    * Number of the player that won the match.
    */
-  protected winner: number = 0;
+  protected winner: number = -1;
+
+  /**
+   * Contains the whole game play history.
+   */
+  protected playHistory: PlayData[] = [];
 
   /**
    * Initialize a new game with a pre-determined board size.
@@ -41,6 +47,7 @@ export default abstract class Game {
   constructor(boardSize: number) {
     if (boardSize <= 0) throw new Error(`'${boardSize}' is not a valid board size.`);
 
+    this.boardSize = boardSize;
     this.initBoard(boardSize);
     this.currentPossibleMovements = this.getPossibleMovements();
   }
@@ -49,22 +56,31 @@ export default abstract class Game {
    * Gets every possible movement from the current player.
    * @returns Returns the game board (matrix of nubmers).
    */
-  abstract getPossibleMovements(): BoardPos[];
+  protected abstract getPossibleMovements(): BoardPos[];
 
   /**
-   * Checks if the game is over or not.
+   * Checks if the game is over or not and who is the winner.
    * @param play Last play done by the current player.
-   * @param currentPlayer Number of the current player that should play the next movement.
-   * @returns True if the game is over, false otherwise.
+   * @param currentPlayer Number of the current player.
+   * @returns Number of the player that won the game (> 0), 0 if the game is over and there is no winner (draw) or -1 if
+   * the game is not over yet.
    */
-  protected abstract checkIfGameIsOver(play: BoardPos, currentPlayer: number): boolean;
+  protected abstract checkIfGameIsOver(play: BoardPos, currentPlayer: number): number;
 
   /**
    * Returns the game board.
    * @returns Returns the game board.
    */
   public getBoard(): number[][] {
-    return this.board;
+    return this.deepCopy(this.board);
+  }
+
+  /**
+   * Return the current possible movements of the current player.
+   * @returns The current possible movements
+   */
+  public getCurrentPossibleMovements(): BoardPos[] {
+    return this.deepCopy(this.currentPossibleMovements);
   }
 
   /**
@@ -84,6 +100,14 @@ export default abstract class Game {
   }
 
   /**
+   * Returns the game play history.
+   * @returns The game play history.
+   */
+  public getPlayHistory(): PlayData[] {
+    return this.deepCopy(this.playHistory);
+  }
+
+  /**
    * Executes a play movement.
    * @param boardPos The board position of the play movement.
    */
@@ -94,17 +118,29 @@ export default abstract class Game {
       possibleMovement =>
         possibleMovement.row === boardPos.row && possibleMovement.column === boardPos.column
     );
-    if (!isAValidPlay) return;
+    if (isAValidPlay.length <= 0) return;
 
+    this.playHistory.push(new PlayData(this.deepCopy(this.board), boardPos, this.currentPlayer));
     this.board[boardPos.row][boardPos.column] = this.currentPlayer;
 
-    if (this.checkIfGameIsOver(boardPos, this.currentPlayer)) {
+    const winner = this.checkIfGameIsOver(boardPos, this.currentPlayer);
+    if (winner !== -1) {
       this.gameIsOver = true;
-      this.winner = this.currentPlayer;
+      this.winner = winner;
+      this.currentPossibleMovements = [];
       return;
+    } else {
+      this.currentPlayer = (this.currentPlayer % 2) + 1;
+      this.currentPossibleMovements = this.getPossibleMovements();
     }
+  }
 
-    this.currentPlayer = (this.currentPlayer % 2) + 1;
+  /**
+   * Check if the board is full and there is no more movement available.
+   * @returns True if the board is full, false otherwise.
+   */
+  protected boardIsFull(): boolean {
+    return this.getPlayHistory().length === Math.pow(this.boardSize, 2);
   }
 
   /**
@@ -112,7 +148,6 @@ export default abstract class Game {
    * @param boardSize The board size.
    */
   private initBoard(boardSize: number): void {
-    this.boardSize = boardSize;
     this.board = [];
 
     for (let row = 0; row < boardSize; row++) {
@@ -121,5 +156,13 @@ export default abstract class Game {
         this.board[row][column] = 0;
       }
     }
+  }
+
+  /**
+   * Creates a deep copy of any object.
+   * @param object Copy of the object passed by.
+   */
+  private deepCopy(object: any) {
+    return JSON.parse(JSON.stringify(object));
   }
 }

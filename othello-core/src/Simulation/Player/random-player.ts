@@ -8,9 +8,8 @@ import BoardPos from '../../Board/board-pos';
 export default class RandomPlayer implements Player {
   /** @inheritdoc */
   public getPlayMovement(game: Game): BoardPos {
-    const movements = game.getPossibleMovements();
-    const playMovement =
-      movements[Math.floor(Math.random() * movements.length)];
+    const movements = game.getCurrentPossibleMovements();
+    const playMovement = movements[Math.floor(Math.random() * movements.length)];
     return playMovement;
   }
 }

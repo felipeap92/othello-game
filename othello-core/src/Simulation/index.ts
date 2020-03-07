@@ -11,8 +11,10 @@ while (!ticTacToeGame.getGameIsOver()) {
   ticTacToeGame.play(playMovement);
   printBoard(ticTacToeGame.getBoard());
 }
+
 console.log(`GAME IS OVER = ${ticTacToeGame.getGameIsOver()}`);
-console.log(`WINNER = PLAYER #0${ticTacToeGame.getWinner()}`);
+console.log(`WINNER = ${ticTacToeGame.getWinner()}`);
+console.log(`PLAY HISTORY = ${JSON.stringify(ticTacToeGame.getPlayHistory())}`);
 
 function printBoard(board: number[][]): void {
   console.log('-----');
