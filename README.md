@@ -14,11 +14,11 @@ Othello (Reversi) game implementation with the flexibility to create your own AI
 
 ## Othello Core
 
-[othello-core](./othello-core) contains the othello game logic implemented as a NodeJS library.
+[othello-core](./othello-core) contains the othello game logic implemented as a JavaScript/TypeScript library.
 
-## [TO-DO] Othello Game
+## Othello GUI
 
-othello-game is the othello game client (game GUI) implemented in React.
+[othello-gui](./othello-gui) is the othello game client (game GUI) implemented using React.
 
 ## [TO-DO] Othello Server
 

@@ -1,0 +1,23 @@
+.board-row:after {
+  clear: both;
+  content: '';
+  display: table;
+}
+.square {
+  float: left;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  background-color: rgb(36, 153, 73);
+  border-top: 1px solid #000;
+  border-left: 1px solid #000;
+  box-sizing: border-box;
+}
+
+.square:hover {
+  background-color: rgb(36, 153, 73, 0.8);
+}
+.square:active {
+  background-color: rgb(36, 153, 73, 0.6);
+}

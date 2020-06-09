@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Othello game with the flexibility to create your own AI player.",
   "main": "./src/index.ts",
+  "repository": "https://github.com/felipeap92/othello-game",
   "author": "Felipe de Assis Pinto <felipeap92@yahoo.com.br>",
   "license": "MIT",
   "keywords": [
@@ -14,6 +15,7 @@
     "start": "nodemon",
     "watch": "run-s build && run-p \"build -- -w\" \"test:unit:hml-coverage -- --watch\"",
     "build": "run-s clean:build && tsc",
+    "build:gui": "yarn build && mv build ../othello-gui/node_modules/othello-core",
     "test": "run-s clean:coverage test:*",
     "test:lint": "tslint --project tsconfig.json -c tslint.json",
     "test:unit": "jest --ci",
