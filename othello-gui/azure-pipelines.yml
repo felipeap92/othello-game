@@ -40,6 +40,6 @@ steps:
 
   - task: PublishBuildArtifacts@1
     inputs:
-      PathtoPublish: './build'
+      PathtoPublish: './othello-gui/build'
       ArtifactName: 'artifact'
       publishLocation: 'Container'
