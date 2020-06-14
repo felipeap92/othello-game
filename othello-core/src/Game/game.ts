@@ -111,14 +111,14 @@ export default abstract class Game {
    * Executes a play movement.
    * @param boardPos The board position of the play movement.
    */
-  public play(boardPos: BoardPos): void {
-    if (this.gameIsOver) return;
+  public play(boardPos: BoardPos): boolean {
+    if (this.gameIsOver) return false;
 
     const isAValidPlay = this.currentPossibleMovements.filter(
-      possibleMovement =>
+      (possibleMovement) =>
         possibleMovement.row === boardPos.row && possibleMovement.column === boardPos.column
     );
-    if (isAValidPlay.length <= 0) return;
+    if (isAValidPlay.length <= 0) return false;
 
     this.playHistory.push(new PlayData(this.deepCopy(this.board), boardPos, this.currentPlayer));
     this.board[boardPos.row][boardPos.column] = this.currentPlayer;
@@ -128,11 +128,12 @@ export default abstract class Game {
       this.gameIsOver = true;
       this.winner = winner;
       this.currentPossibleMovements = [];
-      return;
     } else {
       this.currentPlayer = (this.currentPlayer % 2) + 1;
       this.currentPossibleMovements = this.getPossibleMovements();
     }
+
+    return true;
   }
 
   /**

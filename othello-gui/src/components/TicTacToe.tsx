@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
-
-import Board from './Board';
-
 import TicTacToeGame from 'othello-core/Game/tic-tac-toe-game';
 import BoardPos from 'othello-core/Board/board-pos';
 
-class TicTacToe extends Component {
+import Board from './Board';
+
+class TicTacToe extends Component<{}, { board: number[][] }> {
   ticTacToeGame: TicTacToeGame;
 
-  constructor(props : any) {
+  constructor(props: any) {
     super(props);
     this.ticTacToeGame = new TicTacToeGame();
     this.state = {
-      board: this.ticTacToeGame.getBoard()
+      board: this.ticTacToeGame.getBoard(),
     };
   }
 
@@ -21,7 +20,12 @@ class TicTacToe extends Component {
       <>
         <h1>TicTacToe</h1>
         <br />
-        <Board board={this.ticTacToeGame.getBoard()} onBoardSquareClick={(boardPos) => {this.onBoardSquareClick(boardPos)}} />
+        <Board
+          board={this.state.board}
+          onBoardSquareClick={(boardPos) => {
+            this.onBoardSquareClick(boardPos);
+          }}
+        />
         <br />
         {this.renderWinner()}
       </>
@@ -29,11 +33,11 @@ class TicTacToe extends Component {
   }
 
   renderWinner() {
-    if (!this.ticTacToeGame.getGameIsOver())
-      return null;
+    if (!this.ticTacToeGame.getGameIsOver()) return null;
 
     let winner = this.ticTacToeGame.getWinner();
-    let winnerMsg = winner === 1 || winner === 2 ? `Jogador ${winner} ganhou!` : 'Empate!'
+    let winnerMsg =
+      winner === 1 || winner === 2 ? `Jogador ${winner} ganhou!` : 'Empate!';
 
     return (
       <>
@@ -47,14 +51,14 @@ class TicTacToe extends Component {
   onBoardSquareClick(boardPos: BoardPos): void {
     this.ticTacToeGame.play(boardPos);
     this.setState({
-      board: this.ticTacToeGame.getBoard()
+      board: this.ticTacToeGame.getBoard(),
     });
   }
 
   onResetButtonClick() {
     this.ticTacToeGame = new TicTacToeGame();
     this.setState({
-      board: this.ticTacToeGame.getBoard()
+      board: this.ticTacToeGame.getBoard(),
     });
   }
 }

@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 
 import './App.css';
-import TicTacToe from './components/TicTacToe';
+import TicTacToeOnline from './components/TicTacToeOnline';
 
 class App extends Component {
-
   render() {
     return (
       <div className="container">
-        <TicTacToe />
+        <TicTacToeOnline />
       </div>
     );
   }

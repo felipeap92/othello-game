@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "outDir": "build",
+    "rootDir": "src",
+    "baseUrl": "src",
+    "moduleResolution": "node",
+    "module": "commonjs",
+    "strict": true,
+    "strictNullChecks": false,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "pretty": true
+  },
+  "include": ["./src/**/*"],
+  "exclude": ["./node_modules/", "./src/__tests__/"]
+}

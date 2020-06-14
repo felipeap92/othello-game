@@ -21,33 +21,30 @@ test('When execute a valid play, executes the play', () => {
   const movements = game.getPossibleMovements();
   const playMovement = movements[Math.floor(Math.random() * movements.length)];
 
-  game.play(playMovement);
-
+  expect(game.play(playMovement)).toBeTruthy();
   expect(game.getBoard()[playMovement.row][playMovement.column]).toBe(1);
   expect(game.getGameIsOver()).toBeFalsy();
   expect(game.getWinner()).toBe(-1);
   expect(game.getPlayHistory().length).toBe(1);
 });
 
-test('When execute an invalid play, do nothing', () => {
+test('When execute an invalid play, return false and do nothing', () => {
   const game = new GameMock(3);
   const playMovement = new BoardPos(2, 2);
 
-  game.play(playMovement);
-
+  expect(game.play(playMovement)).toBeFalsy();
   expect(game.getBoard()[playMovement.row][playMovement.column]).toBe(0);
   expect(game.getGameIsOver()).toBeFalsy();
   expect(game.getWinner()).toBe(-1);
   expect(game.getPlayHistory().length).toBe(0);
 });
 
-test('When game is over and try play, do nothing', () => {
+test('When game is over and try play, return false and do nothing', () => {
   const game = new GameMock(1);
   const playMovement = new BoardPos(0, 0);
-  game.play(playMovement);
 
-  game.play(playMovement);
-
+  expect(game.play(playMovement)).toBeTruthy();
+  expect(game.play(playMovement)).toBeFalsy();
   expect(game.getBoard()[playMovement.row][playMovement.column]).toBe(1);
   expect(game.getGameIsOver()).toBeTruthy();
   expect(game.getWinner()).toBe(0);

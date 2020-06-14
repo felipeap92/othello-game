@@ -1,7 +1,17 @@
 {
   "name": "othello-gui",
   "version": "0.1.0",
-  "private": true,
+  "description": "Othello guid.",
+  "repository": "https://github.com/felipeap92/othello-game",
+  "author": "Felipe de Assis Pinto",
+  "license": "MIT",
+  "keywords": [
+    "tic-tac-toe",
+    "othello",
+    "reversi",
+    "game",
+    "react"
+  ],
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -10,6 +20,7 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
+    "colyseus.js": "^0.13.1",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-scripts": "3.4.0",

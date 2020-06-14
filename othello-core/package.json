@@ -1,21 +1,23 @@
 {
   "name": "othello-game",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Othello game with the flexibility to create your own AI player.",
-  "main": "./src/index.ts",
   "repository": "https://github.com/felipeap92/othello-game",
-  "author": "Felipe de Assis Pinto <felipeap92@yahoo.com.br>",
+  "author": "Felipe de Assis Pinto",
   "license": "MIT",
   "keywords": [
+    "tic-tac-toe",
     "othello",
     "reversi",
     "game"
   ],
+  "main": "./src/index.ts",
   "scripts": {
     "start": "nodemon",
     "watch": "run-s build && run-p \"build -- -w\" \"test:unit:hml-coverage -- --watch\"",
     "build": "run-s clean:build && tsc",
-    "build:gui": "yarn build && mv build ../othello-gui/node_modules/othello-core",
+    "build:gui": "yarn build && trash ../othello-gui/node_modules/othello-core && mv build ../othello-gui/node_modules/othello-core",
+    "build:server": "yarn build && trash ../othello-server/node_modules/othello-core && mv build ../othello-server/node_modules/othello-core",
     "test": "run-s clean:coverage test:*",
     "test:lint": "tslint --project tsconfig.json -c tslint.json",
     "test:unit": "jest --ci",
