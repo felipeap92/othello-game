@@ -30,7 +30,7 @@ steps:
       cd ./othello-gui
       yarn
       cd ../othello-core
-      yarn build:core
+      yarn build:gui
     displayName: 'Install dependencies'
 
   - script: |
