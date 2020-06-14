@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import * as Colyseus from 'colyseus.js';
 import TicTacToeGame from 'othello-core/Game/tic-tac-toe-game';
 import BoardPos from 'othello-core/Board/board-pos';
-
 import Board from './Board';
 
 interface TicTacToeOnlineState {
@@ -14,14 +13,16 @@ interface TicTacToeOnlineState {
 }
 
 class TicTacToeOnline extends Component<{}, TicTacToeOnlineState> {
+  readonly COLYSEUS_SERVER_URL = process.env.REACT_APP_COLYSEUS_SERVER_URL;
   ticTacToeGame!: TicTacToeGame;
   client!: Colyseus.Client;
   room!: Colyseus.Room;
 
   constructor(props: any) {
     super(props);
+    console.log('serverUrl', this.COLYSEUS_SERVER_URL);
     this.initComponent();
-    this.client = new Colyseus.Client('ws://localhost:2567');
+    this.client = new Colyseus.Client(this.COLYSEUS_SERVER_URL);
     this.findRoom();
   }
 
