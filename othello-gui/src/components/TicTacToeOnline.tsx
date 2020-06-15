@@ -13,7 +13,8 @@ interface TicTacToeOnlineState {
 }
 
 class TicTacToeOnline extends Component<{}, TicTacToeOnlineState> {
-  readonly COLYSEUS_SERVER_URL = process.env.REACT_APP_COLYSEUS_SERVER_URL;
+  readonly COLYSEUS_SERVER_URL =
+    process.env.REACT_APP_COLYSEUS_SERVER_URL || 'ws://localhost:2567';
   ticTacToeGame!: TicTacToeGame;
   client!: Colyseus.Client;
   room!: Colyseus.Room;
