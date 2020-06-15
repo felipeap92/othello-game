@@ -20,6 +20,6 @@ Othello (Reversi) game implementation with the flexibility to create your own AI
 
 [othello-gui](./othello-gui) is the othello game client (game GUI) implemented using React.
 
-## [TO-DO] Othello Server
+## Othello Server
 
-The othello-server contains the multiplayer game server implementation using [Colyseus](https://github.com/colyseus/colyseus).
+[othello-server](./othello-server) contains the multiplayer game server implementation using [Colyseus](https://github.com/colyseus/colyseus).
