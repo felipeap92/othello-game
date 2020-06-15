@@ -9,7 +9,6 @@ trigger:
       - master
   paths:
     include:
-      - othello-core/*
       - othello-gui/*
 
 pool:
