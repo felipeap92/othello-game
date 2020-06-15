@@ -39,6 +39,6 @@ steps:
 
   - task: PublishBuildArtifacts@1
     inputs:
-      PathtoPublish: './othello-server/build'
+      PathtoPublish: './othello-server'
       ArtifactName: 'artifact'
       publishLocation: 'Container'
