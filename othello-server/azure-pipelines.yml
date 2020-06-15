@@ -32,11 +32,6 @@ steps:
       yarn build:server
     displayName: 'Install dependencies'
 
-  - script: |
-      cd ./othello-server
-      yarn build
-    displayName: 'Build'
-
   - task: PublishBuildArtifacts@1
     inputs:
       PathtoPublish: './othello-server'
