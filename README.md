@@ -6,11 +6,11 @@ Othello (Reversi) game implementation with the flexibility to create your own AI
 
 ## Build Status
 
-| Project | Build | Coverage |
-| ------------- | :-------------: | :-------------: |
-| othello-core | [![Build Status](https://dev.azure.com/felipeap92/Othello%20Game/_apis/build/status/othello-core?branchName=master)](https://dev.azure.com/felipeap92/Othello%20Game/_build/latest?definitionId=3&branchName=master) | ![Azure DevOps coverage](https://img.shields.io/azure-devops/coverage/felipeap92/Othello%20Game/3)
-| othello-game | - | - |
-| othello-server | - | - |
+| Project | Build | Coverage | Link |
+| ------------- | :-------------: | :-------------: | :-------------: |
+| othello-core | [![Build Status](https://dev.azure.com/felipeap92/Othello%20Game/_apis/build/status/othello-core?branchName=master)](https://dev.azure.com/felipeap92/Othello%20Game/_build/latest?definitionId=3&branchName=master) | ![Azure DevOps coverage](https://img.shields.io/azure-devops/coverage/felipeap92/Othello%20Game/3) | - |
+| othello-gui | [![Build Status](https://dev.azure.com/felipeap92/Othello%20Game/_apis/build/status/othello-gui?branchName=master)](https://dev.azure.com/felipeap92/Othello%20Game/_build/latest?definitionId=4&branchName=master) | - | [Game Demo](https://othello.azurewebsites.net/) |
+| othello-server | [![Build Status](https://dev.azure.com/felipeap92/Othello%20Game/_apis/build/status/othello-server?branchName=master)](https://dev.azure.com/felipeap92/Othello%20Game/_build/latest?definitionId=5&branchName=master) | - | [Dashboard Demo](https://othello-server.herokuapp.com/colyseus) |
 
 ## Othello Core
 

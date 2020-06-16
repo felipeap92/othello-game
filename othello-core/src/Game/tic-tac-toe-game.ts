@@ -5,6 +5,17 @@ import BoardPos from '../Board/board-pos';
  * Responsible to manage the Tic Tac Toe game.
  */
 export default class TicTacToeGame extends Game {
+  private row: number[][] = [
+    [0, 0, 0],
+    [0, 0, 0],
+  ];
+  private column: number[][] = [
+    [0, 0, 0],
+    [0, 0, 0],
+  ];
+  private diag: number[] = [0, 0];
+  private antiDiag: number[] = [0, 0];
+
   /**
    * Initialize a new Tic Tac Toe game.
    */
@@ -27,16 +38,6 @@ export default class TicTacToeGame extends Game {
     return possibleMovements;
   }
 
-  private row: number[][] = [
-    [0, 0, 0],
-    [0, 0, 0]
-  ];
-  private column: number[][] = [
-    [0, 0, 0],
-    [0, 0, 0]
-  ];
-  private diag: number[] = [0, 0];
-  private antiDiag: number[] = [0, 0];
   /** @inheritdoc */
   protected checkIfGameIsOver(play: BoardPos, currentPlayer: number): number {
     this.row[currentPlayer - 1][play.row]++;

@@ -110,6 +110,7 @@ export default abstract class Game {
   /**
    * Executes a play movement.
    * @param boardPos The board position of the play movement.
+   * @returns True if the movement was played successfully, false otherwise.
    */
   public play(boardPos: BoardPos): boolean {
     if (this.gameIsOver) return false;
